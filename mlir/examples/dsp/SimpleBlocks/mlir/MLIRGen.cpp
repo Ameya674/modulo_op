@@ -416,6 +416,15 @@ private:
       return builder.create<FIRFilterResponseOp>(location, operands[0] , operands[1]);
     }
 
+    if(callee == "medianFilter"){
+      if(call.getArgs().size() != 1){
+        emitError(location, "MLIR codegen encountered an error: dsp.medianFilter "
+                            "accepts only 1 argument");
+        return nullptr;
+      } 
+      return builder.create<MedianFilterOp>(location, operands[0] );
+    }
+
     if(callee == "slidingWindowAvg"){
       if(call.getArgs().size() != 1){
         emitError(location, "MLIR codegen encountered an error: dsp.slidingWindowAvg "

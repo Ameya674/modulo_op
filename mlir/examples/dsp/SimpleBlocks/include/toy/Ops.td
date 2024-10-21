@@ -643,6 +643,21 @@ def FIRFilterResponseOp : Dsp_Op<"FIRFilterResponse" ,
 }
 
 //===----------------------------------------------------------------------===//
+// MedianFilterOp
+//===----------------------------------------------------------------------===//
+
+def MedianFilterOp : Dsp_Op<"medianFilter", 
+    [Pure, DeclareOpInterfaceMethods<ShapeInferenceOpInterface>]> {
+  
+  let arguments = (ins F64Tensor:$input);
+  let results = (outs F64Tensor);
+
+  let builders = [
+    OpBuilder<(ins "Value":$input)>
+  ];
+}
+
+//===----------------------------------------------------------------------===//
 // SlidingWindowAvg
 //===----------------------------------------------------------------------===//
 
